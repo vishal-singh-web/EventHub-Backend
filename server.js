@@ -9,6 +9,10 @@ require('dotenv').config();
 app.use(express.json())
 connectDB();
 
+
+app.get('/',(req,res)=>{
+    res.status(200).send("Welcome to Event Hub Backend Server")
+})
 app.use('/api/auth',authRoute)
 app.use('/api/events',eventRoute)
 app.use('/api/organizer',organizerRoute)
