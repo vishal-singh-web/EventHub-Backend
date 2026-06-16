@@ -13,7 +13,7 @@ router.get("/dashboard",verifyRole('organizer'),async (req,res)=>{
             count
         })
     } catch(e){
-        res.status(400).send("Some error occured")
+        res.status(400).send(e.message)
         console.log(e)
     }
 })

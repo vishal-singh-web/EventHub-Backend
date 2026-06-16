@@ -14,7 +14,7 @@ router.get("/dashboard",verifyRole('participant'),async (req,res)=>{
             profile:{name,email,role},
         })
     } catch(e){
-        res.status(400).send("Some error occured")
+        res.status(400).send(e.message)
         console.log(e)
     }
 })

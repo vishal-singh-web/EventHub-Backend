@@ -28,7 +28,7 @@ router.post('/register', async (req, res) => {
         })
 
     } catch (e) {
-        res.status(400).send("Some Error occured")
+        res.status(400).send(e.message)
         console.log(e)
     }
 })
@@ -55,7 +55,7 @@ router.post('/login', async (req, res) => {
         })
 
     } catch (e) {
-        res.status(400).send("Some Error occured")
+        res.status(400).send(e.message)
         console.log(e)
     }
 })
