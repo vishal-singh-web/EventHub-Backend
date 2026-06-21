@@ -177,6 +177,22 @@ router.patch('/:eventId/close', verifyRole('organizer'), async (req, res) => {
         }
         foundEvent.status = 'closed';
         await foundEvent.save();
+        i = 0
+        while(i<foundEvent.participants.length){
+            let curr = await User.findById(foundEvent.participants[i].id);
+            j = 0
+            while(j<curr.events.length){
+                if(curr.events[j].id==req.params.eventId){
+                    curr.events[j].status='closed';
+                    break
+                }
+                j+=1
+            }
+            foundEvent.participants[i].status = "closed";
+            await curr.save();
+            await foundEvent.save();
+            i+=1
+        }
         res.status(200).json({
             message: "Event Closed",
             eventId: req.params.eventId
